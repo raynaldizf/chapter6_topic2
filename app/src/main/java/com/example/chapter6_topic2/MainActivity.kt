@@ -1,8 +1,8 @@
 package com.example.chapter6_topic2
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.Settings.Global
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.asLiveData
 import com.example.chapter6_topic2.databinding.ActivityMainBinding
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -26,13 +26,25 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        binding.txtName.text = userPrefs.userName.toString()
-        binding.txtAge.text = userPrefs.userAge.toString()
+
+        userPrefs.userName.asLiveData().observe(this,{
+            binding.txtName.text = it
+        })
+
+        userPrefs.userAge.asLiveData().observe(this,{
+            binding.txtAge.text = it.toString()
+        })
+
+
+//        binding.txtName.text = userPrefs.userName.toString()
+//        binding.txtAge.text = userPrefs.userAge.toString()
 
         binding.btnClear.setOnClickListener{
             GlobalScope.launch {
                 userPrefs.deleteData()
             }
         }
+
+
     }
 }

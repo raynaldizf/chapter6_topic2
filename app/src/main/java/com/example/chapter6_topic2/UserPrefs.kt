@@ -7,6 +7,7 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
 class UserPrefs(private val context : Context) {
@@ -22,12 +23,12 @@ class UserPrefs(private val context : Context) {
         }
     }
 
-    val userName : kotlinx.coroutines.flow.Flow<String> = context.dataStore.data
+    val userName : Flow<String> = context.dataStore.data
         .map {
             it[NAME]?: ""
         }
 
-    val userAge : kotlinx.coroutines.flow.Flow<Int> = context.dataStore.data
+    val userAge : Flow<Int> = context.dataStore.data
         .map {
             it[AGE]?: 0
         }

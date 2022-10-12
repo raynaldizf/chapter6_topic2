@@ -51,5 +51,6 @@ dependencies {
     implementation("androidx.datastore:datastore-preferences-core:1.0.0")
 
     //live data
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.5.1")
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.2.0"
+
 }
